@@ -1,14 +1,14 @@
 <?php
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\AdminController;
 
 /**
  * Recipes Controller
  *
  * @property \App\Model\Table\RecipesTable $Recipes
  */
-class RecipesController extends AppController
+class RecipesController extends AdminController
 {
 
     /**

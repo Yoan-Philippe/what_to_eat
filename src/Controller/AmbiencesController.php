@@ -34,7 +34,7 @@ class AmbiencesController extends AppController
     public function view($id = null)
     {
         $ambience = $this->Ambiences->get($id, [
-            'contain' => []
+            'contain' => ['Recipes']
         ]);
 
         $this->set('ambience', $ambience);
@@ -59,7 +59,8 @@ class AmbiencesController extends AppController
                 $this->Flash->error(__('The ambience could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('ambience'));
+        $recipes = $this->Ambiences->Recipes->find('list', ['limit' => 200]);
+        $this->set(compact('ambience', 'recipes'));
         $this->set('_serialize', ['ambience']);
     }
 

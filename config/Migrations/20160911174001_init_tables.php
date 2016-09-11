@@ -34,7 +34,11 @@ class InitTables extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('image', 'string', [
+        $table->addColumn('m_image', 'string', [
+            'default' => null,
+            'null' => true,
+        ]);
+        $table->addColumn('m_image_dir', 'string', [
             'default' => null,
             'null' => true,
         ]);

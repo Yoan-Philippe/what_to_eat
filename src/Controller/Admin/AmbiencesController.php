@@ -1,14 +1,14 @@
 <?php
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\AdminController;
 
 /**
  * Ambiences Controller
  *
  * @property \App\Model\Table\AmbiencesTable $Ambiences
  */
-class AmbiencesController extends AppController
+class AmbiencesController extends AdminController
 {
 
     /**

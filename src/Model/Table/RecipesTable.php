@@ -51,6 +51,48 @@ class RecipesTable extends Table
             'targetForeignKey' => 'category_id',
             'joinTable' => 'recipes_categories'
         ]);
+
+
+        // Add the behaviour and configure any options you want
+        $this->addBehavior('Proffer.Proffer', [
+            'm_image' => [ 
+                //'root' => WWW_ROOT . 'files', // Customise the root upload folder here, or omit to use the default
+                'dir' => 'm_image_dir',   // The name of the field to store the folder
+                'thumbnailSizes' => [
+                     '80x80' => [   
+                        'w' => 80, 
+                        'h' => 80, 
+                        'crop' => false,
+                    ],
+                    '370x370' => [ 
+                        'w' => 370, 
+                        'h' => 370, 
+                        'crop' => false, 
+                    ],
+                    '80x80-crop' => [  
+                        'w' => 80,
+                        'h' => 80, 
+                        'crop' => true,  
+                    ],
+                    '370x370-crop' => [ 
+                        'w' => 370,
+                        'h' => 370, 
+                        'crop' => true,  
+                    ],
+                    '80x80-fit' => [  
+                        'w' => 80, 
+                        'h' => 80, 
+                        'fit' => true,
+                    ],
+                    '370x370-fit' => [  
+                        'w' => 370,
+                        'h' => 370,
+                        'fit' => true, 
+                    ],
+                ],
+                'thumbnailMethod' => 'Gd'  // Options are Imagick, Gd or Gmagick
+            ]
+        ]);
     }
 
     /**
@@ -70,7 +112,7 @@ class RecipesTable extends Table
             ->notEmpty('title');
 
         $validator
-            ->allowEmpty('image');
+            ->allowEmpty('m_image');
 
         $validator
             ->allowEmpty('description');

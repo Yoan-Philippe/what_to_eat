@@ -34,7 +34,7 @@ class RecipesController extends AppController
     public function view($id = null)
     {
         $recipe = $this->Recipes->get($id, [
-            'contain' => []
+            'contain' => ['Ambiences', 'Categories']
         ]);
 
         $this->set('recipe', $recipe);
@@ -59,53 +59,9 @@ class RecipesController extends AppController
                 $this->Flash->error(__('The recipe could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('recipe'));
+        $ambiences = $this->Recipes->Ambiences->find('list', ['limit' => 200]);
+        $categories = $this->Recipes->Categories->find('list', ['limit' => 200]);
+        $this->set(compact('recipe', 'ambiences', 'categories'));
         $this->set('_serialize', ['recipe']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Recipe id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $recipe = $this->Recipes->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $recipe = $this->Recipes->patchEntity($recipe, $this->request->data);
-            if ($this->Recipes->save($recipe)) {
-                $this->Flash->success(__('The recipe has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The recipe could not be saved. Please, try again.'));
-            }
-        }
-        $this->set(compact('recipe'));
-        $this->set('_serialize', ['recipe']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Recipe id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $recipe = $this->Recipes->get($id);
-        if ($this->Recipes->delete($recipe)) {
-            $this->Flash->success(__('The recipe has been deleted.'));
-        } else {
-            $this->Flash->error(__('The recipe could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
     }
 }

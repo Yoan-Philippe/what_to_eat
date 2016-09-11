@@ -34,7 +34,7 @@ class CategoriesController extends AppController
     public function view($id = null)
     {
         $category = $this->Categories->get($id, [
-            'contain' => []
+            'contain' => ['Recipes']
         ]);
 
         $this->set('category', $category);
@@ -59,7 +59,8 @@ class CategoriesController extends AppController
                 $this->Flash->error(__('The category could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('category'));
+        $recipes = $this->Categories->Recipes->find('list', ['limit' => 200]);
+        $this->set(compact('category', 'recipes'));
         $this->set('_serialize', ['category']);
     }
 

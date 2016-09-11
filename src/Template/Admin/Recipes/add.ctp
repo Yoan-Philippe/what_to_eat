@@ -1,5 +1,12 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <?= $this->element('Sidebar/left-nav'); ?>
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('List Recipes'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Ambiences'), ['controller' => 'Ambiences', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Ambience'), ['controller' => 'Ambiences', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
+    </ul>
 </nav>
 <div class="recipes form large-9 medium-8 columns content">
     <?= $this->Form->create($recipe, ['type' => 'file']) ?>
@@ -19,7 +26,7 @@
                     'label' => '<label{{attrs}}>{{text}}</label>',
                 ]
             ]);
-
+            
             echo $this->Form->input('description');
             echo $this->Form->input('link');
             echo $this->Form->input('ambiences._ids', ['options' => $ambiences]);
