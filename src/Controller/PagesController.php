@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -63,9 +64,20 @@ class PagesController extends AppController
         }
     }
 
-
     public function home()
     {
-        
+        // home things
+    }
+
+    public function search()
+    {
+        $recipes = [];
+        $searchQuery = $this->request->data('search');
+        if ($this->request->is('post')) {
+            $query = '%'.$searchQuery.'%';
+            $recipes = TableRegistry::get('Recipes')->find();
+            $recipes = $recipes->where(['OR' => ['title LIKE' => $query, 'description LIKE' => $query]]);
+        }  
+        $this->set(compact('recipes', 'searchQuery'));
     }
 }

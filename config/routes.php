@@ -62,6 +62,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/' . __d('URL', 'recettes') . '/:slug', ['controller' => 'Recipes', 'action' => 'view'], ['_name' => 'recipe_path', 'pass' => ['slug']]);
     $routes->connect('/' . __d('URL', 'recettes/modifier/') . '/:slug', ['controller' => 'Recipes', 'action' => 'edit'], ['_name' => 'edit_recipe_path', 'pass' => ['slug']]);
 
+
+    $routes->connect('/' . __d('URL', 'search/'), ['controller' => 'Pages', 'action' => 'search'], ['_name' => 'search_path']);
     /**
      * Connect catchall routes for all controllers.
      *
