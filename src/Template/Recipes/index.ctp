@@ -6,12 +6,13 @@
     <p><?= $this->Html->link(__('Ajouter une recette'), ['action' => 'add']) ?></p>
     <?php foreach ($recipes as $recipe): ?>
     <div class="recipe-box">
-        <h3><?= h($recipe->title) ?></h3>
-        <a href="<?= h($recipe->link) ?>">En savoir plus</a>
-        <p class="actions">
-            <?= $this->Html->link(__('Voir'), ['action' => 'view', $recipe->id]) ?> |
-            <?= $this->Html->link(__('Éditer'), ['prefix' => 'admin', 'action' => 'edit', $recipe->id]) ?>
-        </p>
+        <a href="<?= $this->Url->build(['controller' => 'Recipes', 'action' => 'view', $recipe->id]); ?>">
+            <h3><?= h($recipe->title) ?></h3>
+            <a target="_blank" href="<?= h($recipe->link) ?>">En savoir plus</a>
+            <p class="actions">
+                <?= $this->Html->link(__('Éditer'), ['prefix' => 'admin', 'action' => 'edit', $recipe->id]) ?>
+            </p>
+        </a>
     </div>
     <?php endforeach; ?>
 </div>

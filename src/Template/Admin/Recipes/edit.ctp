@@ -15,18 +15,11 @@
     </ul>
 </nav>
 <div class="recipes form large-9 medium-8 columns content">
-    <?= $this->Form->create($recipe) ?>
+    <?= $this->Form->create($recipe, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Edit Recipe') ?></legend>
         <?php
-            echo $this->Form->input('title', ['type' => 'file']);
-
-            /*$recipeImage = $recipe->getImage([
-                'type' => 'small',
-                'size' => '370x370',
-                'fit' => true,
-                'placeholder' => true,
-            ]);*/
+            echo $this->Form->input('title');
 
 
             echo $this->Form->input('m_image', [

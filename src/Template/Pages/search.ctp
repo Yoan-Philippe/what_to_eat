@@ -1,6 +1,6 @@
 <?php 
-if($recipes): ?>
-	<h2><b><?= count($recipes) ?></b> <?= __dn('cake', 'résultat', 'résultats', count($recipes)) ?> pour "<?= $searchQuery ?>"</h2>
+if($recipes->toArray()): ?>
+	<h2><b><?= count($recipes->toArray()) ?></b> <?= __dn('cake', 'résultat', 'résultats', count($recipes->toArray())) ?> pour "<?= $searchQuery ?>"</h2>
 	<?php foreach ($recipes as $recipe): ?>
 		<a href="<?= $this->Url->build(['controller' => 'Recipes', 'action' => 'view', $recipe->id]); ?>">
 		<?php $title = str_ireplace($searchQuery, '<b>' . $searchQuery .'</b>', $recipe->title); ?>

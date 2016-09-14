@@ -41,6 +41,15 @@ class RecipesController extends AppController
         $this->set('_serialize', ['recipe']);
     }
 
+    // Ajax search autocomplete
+    public function searchAjax(){
+        $searchQuery = $_POST['search'];
+        $query = '%'.$searchQuery.'%';
+        $recipes = $this->Recipes->find()->where(['OR' => ['title LIKE' => $query]]);
+        echo json_encode($recipes);
+        exit();
+    }
+
     /**
      * Add method
      *
