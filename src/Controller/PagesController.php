@@ -66,7 +66,9 @@ class PagesController extends AppController
 
     public function home()
     {
-        // home things
+        $recipes = TableRegistry::get('Recipes')->find();
+        $recipes = $recipes->order('rand()')->limit(10);
+        $this->set(compact('recipes'));
     }
 
     public function search()
