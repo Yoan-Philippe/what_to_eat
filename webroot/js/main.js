@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
+	$('input.search-input').focus();
+
 	var ajaxEnable = true;
 	$('input.search-input').on('keyup', function(){
-		if($(this).val()!='' && ($(this).val().length)>1 && ajaxEnable){
+		if($(this).val()!='' && ajaxEnable){
 			getSuggestions($(this).val());
 		}
 		else{
@@ -28,12 +30,12 @@ $(document).ready(function(){
 		   success: function(data) {
 		   		var suggestionsHtml = '';
 		   		if(data.length==0){
-		   			suggestionsHtml += '<p>Aucune recette trouvée :(</p>'
+		   			suggestionsHtml += '<p>Aucune recette trouvée :(</p>';
 		   		}
 		   		else{
 		   			suggestionsHtml = '<ul>';
 		   			$.each(data, function() {
-		   				suggestionsHtml += '<li>' + this.title + '</li>';
+		   				suggestionsHtml += '<li><a href="/recettes/' + this.id + '">' + this.title + '</a></li>';
 		   			});
 		   			suggestionsHtml += '</ul>';
 		   		}
