@@ -1,10 +1,8 @@
 $(document).ready(function(){
 
 	$('input.search-input').focus();
-
-	var ajaxEnable = true;
 	$('input.search-input').on('keyup', function(){
-		if($(this).val()!='' && ajaxEnable){
+		if($(this).val()!=''){
 			getSuggestions($(this).val());
 		}
 		else{
@@ -15,7 +13,6 @@ $(document).ready(function(){
 	});
 
 	function getSuggestions(search){
-		ajaxEnable = false;
 		$.ajax({
 		   url: '/recipes/searchAjax',
 		   dataType: 'json',
@@ -25,7 +22,6 @@ $(document).ready(function(){
 		   },
 		   error: function() {
 		      console.log('An error has occurred');
-		      ajaxEnable = true;
 		   },
 		   success: function(data) {
 		   		var suggestionsHtml = '';
@@ -40,8 +36,6 @@ $(document).ready(function(){
 		   			suggestionsHtml += '</ul>';
 		   		}
 		   		$('div.suggestions').html(suggestionsHtml);
-
-		      ajaxEnable = true;
 		   },
 		});
 	}

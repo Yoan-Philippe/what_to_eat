@@ -7,11 +7,14 @@
     <div class="related">
         <h4><?= __('Recette associées') ?></h4>
         <?php if (!empty($ambience->recipes)): ?>
-            <?php foreach ($ambience->recipes as $recipes): ?>
-                <h5><?= h($recipes->title) ?></h5>
-                <p><?= h($recipes->description) ?></p>
-                <?= $this->Html->link(__('En savoir plus'), $recipes->link , ['target' => '_blank']) ?>
-                <?= $this->Html->link(__('View'), ['controller' => 'Recipes', 'action' => 'view', $recipes->id]) ?>
+            <?php foreach ($ambience->recipes as $recipe): ?>
+                <a href="<?= $this->Url->build(['controller' => 'Recipes', 'action' => 'view', $recipe->id]); ?>">
+                    <h5><?= h($recipe->title) ?></h5>
+                    <p><?= h($recipe->description) ?></p>
+                    <?php if($recipe->link): ?>
+                        <?= $this->Html->link(__('En savoir plus'), $recipe->link , ['target' => '_blank']) ?>
+                    <?php endif; ?>
+                </a>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
