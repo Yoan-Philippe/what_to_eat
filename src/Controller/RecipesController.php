@@ -50,6 +50,14 @@ class RecipesController extends AppController
         exit();
     }
 
+    // Ajax reload suggestion on homepage
+    public function reloadChoices(){
+        $ids = $_POST['ids'];
+        $recipes = $this->Recipes->find()->where(['Recipes.id NOT IN' => $ids])->order('rand()')->limit(3);
+        echo json_encode($recipes);
+        exit();
+    }
+
     /**
      * Add method
      *

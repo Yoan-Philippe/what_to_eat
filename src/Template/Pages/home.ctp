@@ -1,19 +1,21 @@
 <div class="container -home" style="margin: 0 auto; width: 80%;">
 	<div class="recipes-home" style="float:left; width:30%;">
-		<h3>Recettes</h3>
-	    <?php foreach ($recipes as $recipe): ?>
-	    <div class="recipe-box" style="border-radius: 5px; border: 1px solid #ccc; padding:10px; width: 70%; margin-bottom: 8px;">
-	        <a href="<?= $this->Url->build(['controller' => 'Recipes', 'action' => 'view', $recipe->id]); ?>">
-	            <h4><?= h($recipe->title) ?></h4>
-	            <?php if($recipe->link): ?>
-	                <?= $this->Html->link(__('En savoir plus'), $recipe->link , ['target' => '_blank']) ?>
-	            <?php endif; ?>
-	            <p class="actions">
-	                <?= $this->Html->link(__('Éditer'), ['prefix' => 'admin', 'controller'=>'Recipes', 'action' => 'edit', $recipe->id]) ?>
-	            </p>
-	        </a>
+		<h3>Recettes</h3> <span class="reload">Reload</span>
+		<div class="recipes-home-list">
+		    <?php foreach ($recipes as $recipe): ?>
+		    <div data-js-recipe-id="<?= $recipe->id ?>" class="recipe-box" style="border-radius: 5px; border: 1px solid #ccc; padding:10px; width: 70%; margin-bottom: 8px;">
+		        <a href="<?= $this->Url->build(['controller' => 'Recipes', 'action' => 'view', $recipe->id]); ?>">
+		            <h4><?= h($recipe->title) ?></h4>
+		            <?php if($recipe->link): ?>
+		                <?= $this->Html->link(__('En savoir plus'), $recipe->link , ['target' => '_blank']) ?>
+		            <?php endif; ?>
+		            <p class="actions">
+		                <?= $this->Html->link(__('Éditer'), ['prefix' => 'admin', 'controller'=>'Recipes', 'action' => 'edit', $recipe->id]) ?>
+		            </p>
+		        </a>
+		    </div>
+		    <?php endforeach; ?>
 	    </div>
-	    <?php endforeach; ?>
 	</div>
 
 	<div class="categories-home" style="float:left; margin-left:30px; width:30%;">
