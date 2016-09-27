@@ -62,7 +62,7 @@ $(document).ready(function(){
 		      console.log('An error has occurred');
 		   },
 		   success: function(data) {
-		   	
+
 		   		var choicesHtml = '';
 		   		if(data.length==0){
 		   			choicesHtml += '<p>Aucune recette disponible</p>';
@@ -71,13 +71,13 @@ $(document).ready(function(){
 		   			$.each(data, function() {
 		   				choicesHtml += '<div data-js-recipe-id="' + this.id + '" class="recipe-box" style="border-radius: 5px; border: 1px solid #ccc; padding:10px; width: 70%; margin-bottom: 8px;">';
 		   			
-		   			    choicesHtml += '<a href="/recipes/view' + this.id + '">';
+		   			    choicesHtml += '<a href="/recipes/view/' + this.id + '">';
 		   			        choicesHtml += '<h4>' + this.title + '</h4>';
 		   			        if(this.link){
 		   			        	choicesHtml += '<a target="_blank" href="' + this.link + '">En savoir plus</a>';
 		   			        }
 		   			        choicesHtml += '<p class="actions">';
-		   			        choicesHtml += '<a href="/admin/recipes/edit' + this.id + '">Éditer</a>';
+		   			        choicesHtml += '<a href="/admin/recipes/edit/' + this.id + '">Éditer</a>';
 		   			        choicesHtml += '</p>';
 		   			    choicesHtml += '</a>';
 		   			    choicesHtml += '</div>';
